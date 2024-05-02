@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/authContext';
-import { updateProfile, updatePhoneNumber, getAuth, PhoneAuthProvider, updateEmail, sendEmailVerification , signInWithEmailAndPassword } from 'firebase/auth';
+import { updateProfile, getAuth  } from 'firebase/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db, storage } from '../../firebase/firebase';
+import {  storage } from '../../firebase/firebase';
 import './css.css'
 
 function Profile() {
   const { currentUser } = useAuth();
   const [newUsername, setNewUsername] = useState('');
   const [newProfilePic, setNewProfilePic] = useState(null);
-  const [newPhoneNumber, setNewPhoneNumber] = useState('');
+  // const [newPhoneNumber, setNewPhoneNumber] = useState('');
   const [newEmail, setNewEmail] = useState('');  
-  const [verificationCode, setVerificationCode] = useState('');
-  const [error, setError] = useState(null);
-  const [success, setSuccess] = useState(null);
+  // const [verificationCode, setVerificationCode] = useState('');
+  // const [error, setError] = useState(null);
+  // const [success, setSuccess] = useState(null);
   const auth2 = getAuth();
 
   const handleProfileUpdate = async () => {
@@ -24,7 +23,7 @@ function Profile() {
         await updateProfile(auth2.currentUser, {
           displayName: newUsername
         });
-        setSuccess('Username updated successfully!');
+        console.log('Username updated successfully!');
       }
 
       // Upload and update profile picture
@@ -37,8 +36,9 @@ function Profile() {
         await updateProfile(auth2.currentUser, {
           photoURL: picURL
         });
-        setSuccess('Profile picture updated successfully!');
+        console.log('Profile picture updated successfully!');
       }
+      console.log(newEmail)
 
       // Update phone number
         // if (newPhoneNumber.trim() !== '') {
@@ -68,20 +68,20 @@ function Profile() {
         window.location.reload();
 
     } catch (error) {
-      setError('Error updating profile: ' + error.message);
+      console.log('Error updating profile: ' + error.message);
     }
   };
 
-  const handlePhoneVerification = async () => {
-    try {
-      // Confirm the verification code
-      const credential = PhoneAuthProvider.credential(verificationCode, verificationCode);
-      await updatePhoneNumber(auth2.currentUser, credential);
-      setSuccess('Phone number updated successfully!');
-    } catch (error) {
-      setError('Error updating phone number: ' + error.message);
-    }
-  };
+  // const handlePhoneVerification = async () => {
+  //   try {
+  //     // Confirm the verification code
+  //     const credential = PhoneAuthProvider.credential(verificationCode, verificationCode);
+  //     await updatePhoneNumber(auth2.currentUser, credential);
+  //     setSuccess('Phone number updated successfully!');
+  //   } catch (error) {
+  //     setError('Error updating phone number: ' + error.message);
+  //   }
+  // };
   
 
   return (

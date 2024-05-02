@@ -28,9 +28,8 @@ const SideBarFinal = () => {
 
   const { currentUser } = useAuth()
 
-  const [size, setSize] = useState(0);
+  // const [size, setSize] = useState(0);
   const [files, setFiles] = useState([]);
-  var storageVal = 0;
 
   const [open, setOpen] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -85,17 +84,9 @@ const SideBarFinal = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         // Subscribe to user's files and update state
-        const unsubscribeFiles = await getFilesForUser(user.uid, setFiles);
-        for(let file of files){
-          storageVal += file.data.size;
-          console.log("file storage  :",changeBytes(file.data.size));
-        }
+        await getFilesForUser(user.uid, setFiles);
+        
 
-        // Cleanup the user subscription when the component unmounts
-        // return () => {
-        //   unsubscribeFiles();
-
-        // };
       }
     });
 
@@ -106,7 +97,7 @@ const SideBarFinal = () => {
 
   useEffect(() => {
     const sizes = files?.reduce((sum, file) => sum + file.data.size, 0);
-    setSize(sizes);
+    // setSize(sizes);
     const storageSize = changeBytes(sizes);
     setStorageFile(storageSize);
   }, [files]);

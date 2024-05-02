@@ -1,7 +1,6 @@
 import React from "react";
 import BannerBackground from "../../Assets/home-banner-background.png";
 import BannerImage from "../../Assets/home-banner-image.png";
-import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 const Home = () => {

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Modal } from "@mui/material";
 import Lottie from "react-lottie-player";
 import uploadJson from "../lottie/uploadLottie.json";
-import closeJson from "../lottie/closeLottie.json";
 import { UploadFileIcon } from "../common/SvgIcons";
 
 const FileUploadModal = ({

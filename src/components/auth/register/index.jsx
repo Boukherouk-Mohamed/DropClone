@@ -1,19 +1,12 @@
 import React, { useState } from 'react'
-import { Navigate, Link, useNavigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 import { doCreateUserWithEmailAndPassword } from '../../../firebase/auth'
-import {  auth, db, storage } from "../../../firebase/firebase";
-
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db } from "../../../firebase/firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { useAuth } from '../../../contexts/authContext'
 import { getAuth } from 'firebase/auth';
-import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../../firebase/auth'
-
-
-
-
-
+import {  doSignInWithGoogle } from '../../../firebase/auth'
 
 
 
@@ -35,22 +28,20 @@ const [isSigningIn, setIsSigningIn] = useState(false)
             })
         }
     }
-    const navigate = useNavigate()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setconfirmPassword] = useState('')
     const [isRegistering, setIsRegistering] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
 
     
     const { userLoggedIn } = useAuth()
 
-    const onSubmit = async (e) => {
+    const onSubmit =  (e) => {
         e.preventDefault()
         if(!isRegistering) {
             setIsRegistering(true)
-            await doCreateUserWithEmailAndPassword(email, password)
+            doCreateUserWithEmailAndPassword(email, password)
         }
         console.log(userLoggedIn);
         handleCreateuser(userLoggedIn);
@@ -60,8 +51,8 @@ const [isSigningIn, setIsSigningIn] = useState(false)
   const handleCreateuser = async (e) => {
     e.preventDefault();
     try {
-      const storageRef = ref(storage, `users/${userLoggedIn.uid}`);
-      const snapshot = await uploadBytes(storageRef, auth2.currentUser.displayName);
+    //   const storageRef = ref(storage, `users/${userLoggedIn.uid}`);
+    //   const snapshot = await uploadBytes(storageRef, auth2.currentUser.displayName);
       // Associate the file with the authenticated user ID
       await addDoc(collection(db, "users"), {
         userId: auth2.currentUser.uid,
@@ -139,9 +130,9 @@ const [isSigningIn, setIsSigningIn] = useState(false)
                             />
                         </div>
 
-                        {errorMessage && (
+                        {/* {errorMessage && (
                             <span className='text-red-600 font-bold'>{errorMessage}</span>
-                        )}
+                        )} */}
 
                         <button
                             type="submit"

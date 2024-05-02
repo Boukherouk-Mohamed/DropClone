@@ -8,15 +8,7 @@ import { StarBorderIcon, StarFilledIcon } from "./SvgIcons";
 import LottieImage from "./LottieImage";
 import { motion } from "framer-motion";
 
-/**
- * Component to display a list of files with options based on the page
- * @param {Object[]} data - Array of file data
- * @param {string} page - Page identifier ('starred', 'trash', or null)
- * @param {string} imagePath - Image path for Lottie animation
- * @param {string} text1 - First line of text for Lottie animation
- * @param {string} text2 - Second line of text for Lottie animation
- * @returns {JSX.Element} - Files list component
- */
+
 const FilesList = ({ data, page = null, imagePath, text1, text2 }) => {
   return (
     <FileList>
@@ -138,31 +130,6 @@ const StarContainer = styled.div`
   }
 `;
 
-const DeleteContainer = styled.div`
-  width: 100%;
-  padding-bottom: 10px;
-  background: whitesmoke;
-  text-align: center;
-  cursor: pointer;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
 
-  svg {
-    width: max-content;
-    font-size: 20px;
-    margin: 0;
-  }
-
-  &:hover {
-    color: red;
-
-    svg {
-      color: red;
-    }
-  }
-`;
 
 export default FilesList;

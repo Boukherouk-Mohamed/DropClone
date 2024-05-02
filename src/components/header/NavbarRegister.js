@@ -1,8 +1,8 @@
 import React from 'react'
 import "./navbar.css"
 import { Link } from 'react-router-dom'
-import { LoginOutlined, UserOutlined } from '@ant-design/icons'
-import { LoginRounded, SignLanguage } from '@mui/icons-material'
+import { LoginOutlined } from '@ant-design/icons'
+import { LoginRounded } from '@mui/icons-material'
 
 function NavbarRegister() {
   return (

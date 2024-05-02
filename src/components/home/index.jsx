@@ -1,7 +1,5 @@
 import React from 'react'
-import { Provider } from 'react-redux'
 import SideBarFinal from '../sidebar/SideBarFinal'
-import Navbar from '../header/Navbar'
 
 const Home = () => {
     return (

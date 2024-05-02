@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button, Dropdown, Space } from 'antd';
-import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
+import { Dropdown, Space } from 'antd';
+import { LogoutOutlined } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { doSignOut } from '../../firebase/auth';
 import './header.css'
-import { AuthCredential, getAuth } from 'firebase/auth';
+import {  getAuth } from 'firebase/auth';
 
 
 const DrpDown = () => {

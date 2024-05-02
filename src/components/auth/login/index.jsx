@@ -2,22 +2,18 @@ import React, { useState } from 'react'
 import { Navigate, Link } from 'react-router-dom'
 import { doSignInWithEmailAndPassword, doSignInWithGoogle } from '../../../firebase/auth'
 import { useAuth } from '../../../contexts/authContext'
-import LandingPage from '../../landing page/LandingPage'
 
 const Login = () => {
     const { userLoggedIn } = useAuth()
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isSigningIn, setIsSigningIn] = useState(false)
-    const [errorMessage, setErrorMessage] = useState('')
 
     const onSubmit = async (e) => {
         e.preventDefault()
         if(!isSigningIn) {
             setIsSigningIn(true)
             await doSignInWithEmailAndPassword(email, password)
-            // doSendEmailVerification()
         }
     }
 
@@ -75,9 +71,7 @@ const Login = () => {
                             />
                         </div>
 
-                        {errorMessage && (
-                            <span className='text-red-600 font-bold'>{errorMessage}</span>
-                        )}
+                      
 
                         <button
                             type="submit"

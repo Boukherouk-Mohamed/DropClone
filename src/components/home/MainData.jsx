@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {  useRef, useEffect } from "react";
 import styled from "styled-components";
 import imageLottie from '../../Assets/pick-meals-image.png';
 import {
@@ -24,7 +24,7 @@ const MainData = ({
   optionsVisible,
   handleDelete,
 }) => {
-  const [showShareIcons, setShowShareIcons] = useState(false);
+  // const [showShareIcons, setShowShareIcons] = useState(false);
   const optionsMenuRef = useRef(null);
 
 
@@ -37,7 +37,7 @@ const MainData = ({
         !event.target.closest(".optionsContainer") &&
         !event.target.closest(".shareButton")
       ) {
-        setShowShareIcons(false);
+        // setShowShareIcons(false);
         handleOptionsClick(null); // Close options menu if open
       }
     };
@@ -315,38 +315,5 @@ const OptionsMenu = styled.span`
   }
 `;
 
-const ShareButton = styled.span`
-  position: relative;
-  cursor: pointer;
-
-  span {
-    width: max-content;
-    height: max-content;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0;
-    position: absolute;
-    top: -80px;
-    left: -60px;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .show {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  &:hover {
-    span {
-      background-color: transparent;
-    }
-  }
-`;
 
 export default MainData;
