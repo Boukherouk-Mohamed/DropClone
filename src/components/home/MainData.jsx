@@ -85,8 +85,8 @@ const MainData = ({
               <p className="starr" onClick={() => handleStarred(file.id)}>
                 {file.data.starred ? <StarFilledIcon /> : <StarBorderIcon />}
               </p>
-              {/* File details and icon */}
-              <a href={file.data.fileURL} target="_blank">
+              {/* File details and icon */} 
+              <a href={file.data.fileURL} target="_blank" rel="noreferrer">
                 <FileIcons type={file.data.contentType} />
                 <span title={file.data.filename}>{file.data.filename}</span>
               </a>
@@ -114,7 +114,7 @@ const MainData = ({
                       href={file.data.fileURL}
                       download={file.data.name}
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noreferrer"
                     >
                       <DownloadIcon />
                       {" Download"}
